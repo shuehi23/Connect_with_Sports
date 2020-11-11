@@ -86,20 +86,30 @@ $gestUserEmail = 'guest@login.com';
 //DB接続関数
 function dbConnect()
 {
-    $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
-    $user = 'root';
-    $pass = 'root';
-    $option = array(
-        // SQL実行失敗時にはエラーコードのみ設定
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-        // デフォルトフェッチモードを連想配列形式に設定
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-    );
-    $dbh = new PDO($dsn, $user, $pass, $option);
-    return $dbh;
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    
+    $db_name = substr($url["path"], 1);
+    $db_host = $url["host"];
+    $user = $url["user"];
+    $password = $url["pass"];
+      
+    $dsn = "mysql:dbname=".$db_name.";host=".$db_host;
+
+    $pdo=new PDO($dsn,$user,$password,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+    // $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
+    // $user = 'root';
+    // $pass = 'root';
+    // $option = array(
+    //     // SQL実行失敗時にはエラーコードのみ設定
+    //     PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+    //     // デフォルトフェッチモードを連想配列形式に設定
+    //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    //     // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+    //     // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+    //     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    // );
+    // $dbh = new PDO($dsn, $user, $pass, $option);
+    return $pdo;
 }
 // SQL実行関数
 function queryPost($dbh, $sql, $data)
