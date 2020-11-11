@@ -87,7 +87,7 @@ $gestUserEmail = 'guest@login.com';
 function dbConnect()
 {
     function dbConnect(){
-        $db = parse_url($_SERVER['mysql://b247223fb1b0b6:0dcd9c79@us-cdbr-east-02.cleardb.com/heroku_ad815672424fba4?reconnect=true']);
+        $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
         $db['dbname'] = ltrim($db['path'], '/');
         $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
         $user = $db['user'];
