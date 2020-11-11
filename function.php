@@ -86,7 +86,6 @@ $gestUserEmail = 'guest@login.com';
 //DB接続関数
 function dbConnect()
 {
-    function dbConnect(){
         $db = parse_url($_SERVER['mysql://b247223fb1b0b6:0dcd9c79@us-cdbr-east-02.cleardb.com/heroku_ad815672424fba4?reconnect=true']);
         $db['heroku_ad815672424fba4'] = ltrim($db['path'], '/');
         $dsn = "mysql:host={$db['us-cdbr-east-02.cleardb.com']};dbname={$db['heroku_ad815672424fba4']};charset=utf8";
@@ -99,7 +98,6 @@ function dbConnect()
         );
         $dbh = new PDO($dsn,$user,$password,$options);
         return $dbh;
-      }
     // $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
     // $user = 'root';
     // $pass = 'root';
