@@ -86,11 +86,11 @@ $gestUserEmail = 'guest@login.com';
 //DB接続関数
 function dbConnect()
 {
-    $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-    $db['dbname'] = ltrim($db['path'], '/');
-    $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-    $user = $db['user'];
-    $password = $db['pass'];
+    $db = parse_url($_SERVER['mysql://b9d9fa1d56a9b4:8b2d1112@us-cdbr-east-02.cleardb.com/heroku_1bc8946db7cf9be?reconnect=true']);
+    $db['heroku_1bc8946db7cf9be'] = ltrim($db['path'], '/Users/araishuuhei/dumps/one_sports.sql');
+    $dsn = "mysql:host={$db['us-cdbr-east-02.cleardb.com']};dbname={$db['heroku_1bc8946db7cf9be']};charset=utf8";
+    $user = $db['b9d9fa1d56a9b4'];
+    $password = $db['8b2d1112'];
     $options = array(
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
