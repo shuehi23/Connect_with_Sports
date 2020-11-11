@@ -86,32 +86,32 @@ $gestUserEmail = 'guest@login.com';
 //DB接続関数
 function dbConnect()
 {
-    $db = parse_url($_SERVER['mysql://b9d9fa1d56a9b4:8b2d1112@us-cdbr-east-02.cleardb.com/heroku_1bc8946db7cf9be?reconnect=true']);
-    $db['heroku_1bc8946db7cf9be'] = ltrim($db['path'], '/Users/araishuuhei/dumps/one_sports.sql');
-    $dsn = "mysql:host={$db['us-cdbr-east-02.cleardb.com']};dbname={$db['heroku_1bc8946db7cf9be']};charset=utf8";
-    $user = $db['b9d9fa1d56a9b4'];
-    $password = $db['8b2d1112'];
-    $options = array(
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-      PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
-    );
-    $dbh = new PDO($dsn,$user,$password,$options);
-    return $dbh;
-    // $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
-    // $user = 'root';
-    // $pass = 'root';
-    // $option = array(
-    //     // SQL実行失敗時にはエラーコードのみ設定
-    //     PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-    //     // デフォルトフェッチモードを連想配列形式に設定
-    //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    //     // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-    //     // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-    //     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    // $db = parse_url($_SERVER['mysql://b9d9fa1d56a9b4:8b2d1112@us-cdbr-east-02.cleardb.com/heroku_1bc8946db7cf9be?reconnect=true']);
+    // $db['heroku_1bc8946db7cf9be'] = ltrim($db['path'], '/Users/araishuuhei/dumps/one_sports.sql');
+    // $dsn = "mysql:host={$db['us-cdbr-east-02.cleardb.com']};dbname={$db['heroku_1bc8946db7cf9be']};charset=utf8";
+    // $user = $db['b9d9fa1d56a9b4'];
+    // $password = $db['8b2d1112'];
+    // $options = array(
+    //   PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    //   PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    //   PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
     // );
-    // $dbh = new PDO($dsn, $user, $pass, $option);
+    // $dbh = new PDO($dsn,$user,$password,$options);
     // return $dbh;
+    $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
+    $user = 'root';
+    $pass = 'root';
+    $option = array(
+        // SQL実行失敗時にはエラーコードのみ設定
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+        // デフォルトフェッチモードを連想配列形式に設定
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    );
+    $dbh = new PDO($dsn, $user, $pass, $option);
+    return $dbh;
 }
 // SQL実行関数
 function queryPost($dbh, $sql, $data)
