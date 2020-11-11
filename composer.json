@@ -8,6 +8,7 @@
     ],
     "require": {
         "php": "^7.4",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "heroku/heroku-buildpack-php": "*"
     }
 }
