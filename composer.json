@@ -1,16 +1,6 @@
 {
-    "name": "araishuuhei/connect_with_sports",
-    "authors": [
-        {
-            "name": "shuehi23",
-            "email": "23.shuhei.18@gmail.com"
-        }
-    ],
     "require": {
-        "php": "^7.4",
-        "ext-mbstring": "*"
-    },
-    "require-dev": {
-        "heroku/heroku-buildpack-php": "*"
+      "php": "^7.4",
+      "ext-mbstring": "*"
     }
-}
+ }
