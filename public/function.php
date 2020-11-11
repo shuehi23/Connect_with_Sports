@@ -87,11 +87,11 @@ $gestUserEmail = 'guest@login.com';
 function dbConnect()
 {
     function dbConnect(){
-        $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-        $db['dbname'] = ltrim($db['path'], '/');
-        $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-        $user = $db['user'];
-        $password = $db['pass'];
+        $db = parse_url($_SERVER['mysql://b247223fb1b0b6:0dcd9c79@us-cdbr-east-02.cleardb.com/heroku_ad815672424fba4?reconnect=true']);
+        $db['heroku_ad815672424fba4'] = ltrim($db['path'], '/');
+        $dsn = "mysql:host={$db['us-cdbr-east-02.cleardb.com']};dbname={$db['heroku_ad815672424fba4']};charset=utf8";
+        $user = $db['b247223fb1b0b6'];
+        $password = $db['0dcd9c79'];
         $options = array(
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
