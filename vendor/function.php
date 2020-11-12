@@ -2,7 +2,7 @@
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php.log');
 
-$debug_flg = true;
+$debug_flg = false;
 function debug($str)
 {
     global $debug_flg;
@@ -126,7 +126,6 @@ function dbConnect()
     // );
     // $dbh = new PDO($dsn, $user, $pass, $option);
     // return $dbh;
-}
 // SQL実行関数
 function queryPost($dbh, $sql, $data)
 {
