@@ -99,7 +99,7 @@ function dbConnect()
 //   $dbh = new PDO($dsn,$user,$password,$options);
 //   return $dbh;
         $db = parse_url($_SERVER['mysql://b247223fb1b0b6:0dcd9c79@us-cdbr-east-02.cleardb.com/heroku_ad815672424fba4?reconnect=true']);
-        $db['heroku_ad815672424fba4'] = ltrim($db['path'], '/Users/araishuuhei/dumps/one_sports-4.sql');
+        $db['heroku_ad815672424fba4'] = ltrim($db['/Users/araishuuhei/dumps/one_sports-4.sql'], '/');
         $dsn = "mysql:host={$db['us-cdbr-east-02.cleardb.com']};dbname={$db['heroku_ad815672424fba4']};charset=utf8";
         $user = $db['b247223fb1b0b6'];
         $password = $db['0dcd9c79'];
