@@ -99,9 +99,9 @@ function dbConnect()
 //   $dbh = new PDO($dsn,$user,$password,$options);
 //   return $dbh;
         
-    $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
-    $user = 'root';
-    $pass = 'root';
+    $dsn = 'mysql:dbname=heroku_ad815672424fba4;host=us-cdbr-east-02.cleardb.com;charset=utf8';
+    $user = 'b247223fb1b0b6';
+    $pass = '0dcd9c79';
     $option = array(
         // SQL実行失敗時にはエラーコードのみ設定
         PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
