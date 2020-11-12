@@ -2,7 +2,7 @@
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php.log');
 
-$debug_flg = true;
+$debug_flg = false;
 function debug($str)
 {
     global $debug_flg;
@@ -86,31 +86,18 @@ $gestUserEmail = 'guest@login.com';
 //DB接続関数
 function dbConnect()
 {
-    $dsn = 'mysql:dbname=heroku_ad815672424fba4;host=us-cdbr-east-02.cleardb.com;charset=utf8';
-  $user = 'b247223fb1b0b6';
-  $password = '0dcd9c79';
-  $option = array(
-
+    $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+    $db['dbname'] = ltrim($db['path'], '/');
+    $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+    $user = $db['user'];
+    $password = $db['pass'];
+    $options = array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
   );
-
-  $dbh = new PDO($dsn, $user, $password, $option);
+  $dbh = new PDO($dsn,$user,$password,$options);
   return $dbh;
-}
-//     $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-//     $db['dbname'] = ltrim($db['path'], '/');
-//     $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-//     $user = $db['user'];
-//     $password = $db['pass'];
-//     $options = array(
-//     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-//     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
-//   );
-//   $dbh = new PDO($dsn,$user,$password,$options);
-//   return $dbh;
         
     // $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
     // $user = 'root';
@@ -126,6 +113,7 @@ function dbConnect()
     // );
     // $dbh = new PDO($dsn, $user, $pass, $option);
     // return $dbh;
+    }
 // SQL実行関数
 function queryPost($dbh, $sql, $data)
 {
