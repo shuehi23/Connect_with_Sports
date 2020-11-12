@@ -88,15 +88,15 @@ require('head.php');
                         <form action="" method="post">
                             <div class="err-msg"><?php echo errmsg('old_pass'); ?></div>
                             <label>
-                                <input type="text" name="old_pass" placeholder="old password - 古いパスワード" value="<?php echo getFormData('old_pass'); ?>">
+                                <input type="password" name="old_pass" placeholder="old password - 古いパスワード" value="<?php echo getFormData('old_pass'); ?>">
                             </label>
                             <div class="err-msg"><?php echo errmsg('new_pass'); ?></div>
                             <label>
-                                <input type="text" name="new_pass" placeholder="new password - 新しいパスワード" value="<?php echo getFormData('new_pass'); ?>">
+                                <input type="password" name="new_pass" placeholder="new password - 新しいパスワード" value="<?php echo getFormData('new_pass'); ?>">
                             </label>
                             <div class="err-msg"><?php echo errmsg('renew_pass'); ?></div>
                             <label>
-                                <input type="text" name="renew_pass" placeholder="re-enter password - パスワード再入力" value="<?php echo getFormData('renew_pass'); ?>">
+                                <input type="password" name="renew_pass" placeholder="re-enter password - パスワード再入力" value="<?php echo getFormData('renew_pass'); ?>">
                             </label>
 
                             <p class="btn"><input type="submit" class="raf" value="change" name="submit"></p>

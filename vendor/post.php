@@ -83,7 +83,7 @@ if(!empty($_POST)){
             }
             $stmt = queryPost($dbh, $sql, $data);
             if($stmt){
-                $_SESSION['msg_success'] = SUC08;
+                $_SESSION['msg_success'] = SUC06;
                 header("Location:mypage.php");
                 exit();
             }
@@ -116,17 +116,17 @@ require('head.php');
                              <input type="text" name="title" value="<?php echo  getFormData('title'); ?>"> 
                          </label>
                          <div class="err-msg"><?php echo errmsg('title'); ?></div>
-
+                         
                          <label for="" class="raf" style="font-size:24px;">place - <span class="min" style="font-size:16px;vertical-align:middle;">場所</span>
                             <input type="text" name="place" value="<?php echo getFormData('place'); ?>">
                          </label>
                          <div class="err-msg"><?php echo errmsg('place'); ?></div>
 
                          <label for="" class="raf key" style="font-size:24px;">keywords - <span class="min" style="font-size:16px;vertical-align:middle;">キーワード</span><br>
-                        　　<div class="input-area">　
+                        <div class="input-area">
                              <input class="key" type="text" name="key1" value="<?php echo getFormData('key1'); ?>">
-                             <input class="key" type="text" name="key2" value="<?php echo getFormData('key2'); ?>" style="position:relative;left:-12px;">
-                             <input class="key" type="text" name="key3" value="<?php echo getFormData('key3'); ?>" style="left:0;">
+                             <input class="key" type="text" name="key2" value="<?php echo getFormData('key2'); ?>">
+                             <input class="key" type="text" name="key3" value="<?php echo getFormData('key3'); ?>">
                              </div> 
                          </label>
                         <div class="err-msg"></div>
