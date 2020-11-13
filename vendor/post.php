@@ -191,7 +191,7 @@ require('head.php');
 
                         <div class="flex" style="display: block;">
                         <?php if(!empty($edit_flg)){ ?>
-                        <a class="delete" href="deletepost.php<?php echo '?p_id='.$p_id; ?>"><i class="far fa-trash-alt"></i></a> 
+                        <a class="delete" href="deletePost.php<?php echo '?p_id='.$p_id; ?>"><i class="far fa-trash-alt"></i></a> 
                         <?php } ?>
                         <p  class="btn" style="text-align:center;"><input class="raf" type="submit" value="<?php echo(empty($edit_flg)) ? 'post' : 'change'; ?>" name="submit"></p>
                         </div>
