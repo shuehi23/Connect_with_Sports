@@ -31,7 +31,7 @@ $sitetitle = '投稿一覧';
 require('head.php');
 ?>
 
-<body id="postlist">
+<body id="postList">
     <?php require('header.php'); ?>
     <div class="wrapper">
         <div class="post-list-img">
@@ -132,13 +132,13 @@ require('head.php');
                             }
                             ?>
                             <?php if ($nowPage != 1) : ?>
-                                <li class="list-item"><a href="postlist.php<?php echo (!empty(appendGet())) ? appendGet() . '&p=1' : '?p=1'; ?>" class="raf">&lt;</a></li>
+                                <li class="list-item"><a href="postList.php<?php echo (!empty(appendGet())) ? appendGet() . '&p=1' : '?p=1'; ?>" class="raf">&lt;</a></li>
                             <?php endif; ?>
                             <?php for ($i = $minPageNum; $i <= $maxPageNum; $i++) : ?>
                                 <li class="raf list-item <?php if ($nowPage == $i) echo 'active'; ?>"><a href="<?php echo (!empty(appendget())) ? appendget() . '&p=' . $i : '?p=' . $i; ?>"><?php echo $i; ?></a></li>
                             <?php endfor; ?>
                             <?php if ($nowPage != $maxPageNum) : ?>
-                                <li class="raf list-item"><a href="postlist.php<?php echo (!empty(appendget())) ? appendget() . '&p=' . $maxPageNum : '?p=' . $maxPageNum; ?>">&gt;</a></li>
+                                <li class="raf list-item"><a href="postList.php<?php echo (!empty(appendget())) ? appendget() . '&p=' . $maxPageNum : '?p=' . $maxPageNum; ?>">&gt;</a></li>
                             <?php endif; ?>
 
                         </ul>
