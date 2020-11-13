@@ -50,7 +50,7 @@ if(!empty($_POST)){
         maxLen($title, 'title');
         maxLen($place, 'place');
         maxLen($comment, 'comment');
-        validselect($cate, 'category_id');
+        validSelect($cate, 'category_id');
     }else{
         if($dbData['title'] !== $title){
             validRequired($title, 'title');
@@ -147,7 +147,7 @@ require('head.php');
                         <div class="err-msg"><?php echo errmsg('comment'); ?></div>
 
                         <div class="flex" style="justify-content:space-between;">
-                           <div class="flex culom">
+                           <div class="flex column">
                                <label for="" class="raf js-area-drop" style="font-size:24px;">
                                    <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
                                    <input type="file" name="pic1" class="input-file">
@@ -156,7 +156,7 @@ require('head.php');
                                </label>
                                <div class="err-msg"><?php echo errmsg('pic1'); ?></div>
                            </div>
-                           <div class="flex culom">
+                           <div class="flex column">
                                <label for="" class="raf js-area-drop" style="font-size: 24px;">
                                    <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
                                    <input type="file" name="pic2" class="input-file">
@@ -168,7 +168,7 @@ require('head.php');
 
                         </div>
                         <div class="flex" style="justify-content: space-between;margin-bottom:40px;">
-                           <div class="flex culom">
+                           <div class="flex column">
                                <label for="" class="raf js-area-drop" style="font-size: 24px;">
                                    <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
                                    <input type="file" name="pic3" class="input-file">
@@ -177,7 +177,7 @@ require('head.php');
                                </label>
                                <div class="err-msg"><?php echo errmsg('pic3'); ?></div>
                            </div>
-                           <div class="flex culom">
+                           <div class="flex column">
                                <label for="" class="raf js-area-drop" style="font-size: 24px;">
                                    <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
                                    <input type="file" name="pic4" class="input-file">

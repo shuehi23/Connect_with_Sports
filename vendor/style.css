@@ -545,7 +545,7 @@ input[type="file"] {
     z-index: 10;
 }
 
-.culom {
+.column {
     flex-direction: column;
     width: 48%;
     min-height: 150px;
@@ -587,7 +587,7 @@ textarea {
     position: relative;
 }
 
-#profedit .culom {
+#profedit .column {
     width: 300px;
     margin: 0 auto;
 }
@@ -1237,7 +1237,7 @@ input:hover[type=button] {
     transition: ease-in .2s;
 }
 
-.culom .file-drag {
+.column .file-drag {
     position: absolute;
     top: 0;
     left: 0;
