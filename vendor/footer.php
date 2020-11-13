@@ -1,6 +1,6 @@
 <footer id="footer" class="min" style="width: 100%;">
 
-  Copyright <a href="#" style="color: white;">Connect Through Sports</a>
+  Copyright <a href="#" style="color: white;">Connect with Sports</a>
 </footer>
 <script src="js/vendor/jquery-3.4.1.min.js"></script>
 <script>
