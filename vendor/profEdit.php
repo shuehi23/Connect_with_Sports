@@ -123,7 +123,7 @@ require('head.php');
                             </div>
 
                             <div class="flex" style="justify-content: space-between;">
-                                <div class="flex culom">
+                                <div class="flex column">
                                     <label class="raf js-area-drop" for="" method="post" style="font-size:24px;">
                                         <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
                                         <input type="file" name="pic" class="input-file">
