@@ -688,7 +688,7 @@ input[type=text].key:last-child {
     max-height: 200px;
 }
 
-/* postlist */
+/* postList */
 
 .post-list-img {
     background: url(img/post-list-img.jpg) no-repeat;
@@ -715,23 +715,23 @@ input[type=text].key:last-child {
     margin-top: 6px;
 }
 
-#postlist input[type=text] {
+#postList input[type=text] {
     width: 240px;
     margin-top: 6px;
     margin-right: 48px;
 }
 
-#postlist form {
+#postList form {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #ccc;
 }
 
-#postlist form>div {
+#postList form>div {
     display: flex;
 }
 
-#postlist input[type="submit"] {
+#postList input[type="submit"] {
     margin-top: 28px;
 }
 
