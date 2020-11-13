@@ -72,7 +72,7 @@
                                 <p style="font-size:15px;"><?php echo $getUser['intro']; ?></p>
                             </div>
                         </div>
-                        <p><a class="raf" style="font-size:20px;" href="postlist.php">
+                        <p><a class="raf" style="font-size:20px;" href="postList.php">
                                 << back</a> </p> </div> <div class="detail-wrap">
                                     <div class="detail-title">
                                         <h2 class="raf">title -<span class="min" style="font-size:34px;margin-left:10px"><?php echo $viewData['title']; ?></span><i class="fas fa-heart js-like <?php if (isLike($_SESSION['user_id'], $viewData['id'])) echo 'active'; ?>" data-photoid="<?php echo sanitize($viewData['id']); ?>"></i></h2>
