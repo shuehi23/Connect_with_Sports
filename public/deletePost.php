@@ -2,13 +2,13 @@
 require('function.php');
 debug('---------------------------投稿削除-------------------------');
 
-$p_id = (!empty($_GET['p_id'])) ? $_GET['p_id'] : '';
-debug('削除写真ID:'.$p_id);
+$a_id = (!empty($_GET['a_id'])) ? $_GET['a_id'] : '';
+debug('削除投稿ID:'.$a_id);
 
 try {
     $dbh = dbConnect();
-    $sql = 'DELETE FROM photo WHERE id = ?';
-    $data = array($p_id);
+    $sql = 'DELETE FROM article WHERE id = ?';
+    $data = array($a_id);
     $stmt = queryPost($dbh, $sql, $data);
     if($stmt){
         $_SESSION['msg_success'] = SUC07;

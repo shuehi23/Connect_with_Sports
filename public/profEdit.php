@@ -16,7 +16,7 @@ if (!empty($_POST)) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $job = $_POST['job'];
-    $sports = $_POST['sports'];
+    $hobby = $_POST['hobby'];
     $area = $_POST['area'];
     $intro = $_POST['intro'];
     $pic = (!empty($_FILES['pic']['name'])) ? uploadImg($_FILES['pic'], 'pic') : '';
@@ -28,8 +28,8 @@ if (!empty($_POST)) {
     if ($dbData['job'] !== $job) {
         maxLen($job, 'job');
     }
-    if ($dbData['sports'] !== $sports) {
-        maxLen($sports, 'sports');
+    if ($dbData['hobby'] !== $hobby) {
+        maxLen($hobby, 'hobby');
     }
     if ($dbData['intro'] !== $intro) {
         maxLen($intro, 'intro');
@@ -48,13 +48,13 @@ if (!empty($_POST)) {
 
         try {
             $dbh = dbConnect();
-            $sql = 'UPDATE users SET username=?,email=?,job=?,sports=?,intro=?,area=?,pic=? WHERE id=? AND NOT id = ?';
-            $data = array($username, $email, $job, $sports, $intro, $area, $pic, $dbData['id'], $gestUserId);
+            $sql = 'UPDATE users SET username=?,email=?,job=?,hobby=?,intro=?,area=?,pic=? WHERE id=? AND NOT id = ?';
+            $data = array($username, $email, $job, $hobby, $intro, $area, $pic, $dbData['id'], $gestUserId);
             $stmt = queryPost($dbh, $sql, $data);
             if ($gestUserId  === (int)$dbData['id']) {
                 $_SESSION['msg_success'] = SUC09;
             } else {
-                $_SESSION['msg_success'] = SUC01;
+                $_SESSION['msg_success'] = SUC05;
             }
             debug('マイページへ遷移');
             header("Location:mypage.php");
@@ -97,10 +97,10 @@ require('head.php');
                             </label>
                             <div class="err-msg" style="bottom:25px;"><?php echo errmsg('job'); ?></div>
 
-                            <label class="raf" for="" method="post" style="font-size:24px;">sports - <span class="min" style="font-size:16px;vertical-align:middle;">競技</span><br>
-                                <input type="text" name="sports" value="<?php echo getFormData('sports'); ?>">
+                            <label class="raf" for="" method="post" style="font-size:24px;">hobby - <span class="min" style="font-size:16px;vertical-align:middle;">趣味</span><br>
+                                <input type="text" name="hobby" value="<?php echo getFormData('hobby'); ?>">
                             </label>
-                            <div class="err-msg" style="bottom:25px;"><?php echo errmsg('sports'); ?></div>
+                            <div class="err-msg" style="bottom:25px;"><?php echo errmsg('hobby'); ?></div>
 
                             <!--パスワード入力-->
                             <label class="raf" for="" style="font-size:24px;display:inline-block;margin-bottom:20px;">regidential area - <span class="min" style="font-size:16px;vertical-align:middle;">居住エリア</span><br>
@@ -116,7 +116,7 @@ require('head.php');
                             <label class="raf" for="" method="post" style="font-size:24px;">self introduction - <span class="min" style="font-size:16px;vertical-align:middle;">自己紹介</span><br>
                                 <textarea name="intro" id="intro" cols="20" rows="5"><?php echo getFormData('intro'); ?></textarea>
                             </label>
-                            <div class="err-msg" style="bottom:15px;"><?php echo errmsg('intro'); ?>
+                            <div class="err-msg" style="top:15px;"><?php echo errmsg('intro'); ?>
                                 <p class="count-text">
                                     <span id="js-count-view">0</span>/200文字
                                 </p>

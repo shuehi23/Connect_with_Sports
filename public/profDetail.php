@@ -80,8 +80,8 @@ require('head.php');
                                     <p class="min"><?php echo $getUser['job']; ?></p>
                                 </div>
                                 <div class="hoddy de-in flex">
-                                    <p class="min phob">スポーツ</p>
-                                    <p class="min"><?php echo $getUser['sports']; ?></p>
+                                    <p class="min phob">趣味</p>
+                                    <p class="min"><?php echo $getUser['hobby']; ?></p>
                                 </div>
                                 <div class="area de-in flex">
                                     <p class="min parea">居住エリア</p>

@@ -34,12 +34,12 @@ if (!empty($_POST)) {
                     本メールアドレス宛にパスワード再発行のご依頼がありました。
                     下記のURLにて認証キーをご入力頂くとパスワードが再発行されます。
 
-                    パスワード再発行認証キー入力ページ：https://connect-with-sports.herokuapp.com/remindrecieve.php
+                    パスワード再発行認証キー入力ページ：https://takahito_special_site.herokuapp.com/remindrecieve.php
                     認証キー：{$authkey}
                     ※認証キーの有効期限は30分となります
 
                     認証キーを再発行されたい場合は下記ページより再度再発行をお願い致します。
-                    https://connect-with-sports.herokuapp.com/remindsend.php
+                    https://takahito_special_site.herokuapp.com/remindsend.php
                     EOT;
                     sendMail($to, $subject, $comment, $from);
 

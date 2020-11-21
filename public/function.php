@@ -2,7 +2,7 @@
 ini_set('log_errors', 'on');
 ini_set('error_log', 'php.log');
 
-$debug_flg = false;
+$debug_flg = true;
 function debug($str)
 {
     global $debug_flg;
@@ -68,7 +68,7 @@ define('MSG16', 'ゲストユーザーのアドレスのためこの機能はご
 define('SUC01', 'パスワードを変更しました');
 define('SUC02', 'メールを送信しました');
 define('SUC03', 'パスワードを再発行しました');
-define('SUC04', '呟いて、共通のコミュニティを作ろう!');
+define('SUC04', '金子峻大 特設サイトへようこそ！！');
 define('SUC05', 'プロフィールを変更しました');
 define('SUC06', '投稿しました');
 define('SUC07', '投稿が削除されました');
@@ -86,33 +86,33 @@ $gestUserEmail = 'guest@login.com';
 //DB接続関数
 function dbConnect()
 {
-    $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-    $db['dbname'] = ltrim($db['path'], '/');
-    $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-    $user = $db['user'];
-    $password = $db['pass'];
-    $options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
-  );
-  $dbh = new PDO($dsn,$user,$password,$options);
-  return $dbh;
+//     $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+//     $db['dbname'] = ltrim($db['path'], '/');
+//     $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+//     $user = $db['user'];
+//     $password = $db['pass'];
+//     $options = array(
+//     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
+//   );
+//   $dbh = new PDO($dsn,$user,$password,$options);
+//   return $dbh;
         
-    // $dsn = 'mysql:dbname=one_sports;host=localhost;charset=utf8';
-    // $user = 'root';
-    // $pass = 'root';
-    // $option = array(
-    //     // SQL実行失敗時にはエラーコードのみ設定
-    //     PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-    //     // デフォルトフェッチモードを連想配列形式に設定
-    //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    //     // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-    //     // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-    //     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-    // );
-    // $dbh = new PDO($dsn, $user, $pass, $option);
-    // return $dbh;
+    $dsn = 'mysql:dbname=special_site;host=localhost;charset=utf8';
+    $user = 'root';
+    $pass = 'root';
+    $option = array(
+        // SQL実行失敗時にはエラーコードのみ設定
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+        // デフォルトフェッチモードを連想配列形式に設定
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    );
+    $dbh = new PDO($dsn, $user, $pass, $option);
+    return $dbh;
     }
 // SQL実行関数
 function queryPost($dbh, $sql, $data)
@@ -257,7 +257,7 @@ function getUserOne($u_id)
     debug('ユーザーID' . $u_id);
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT u.id, u.username, u.job, u.sports, u.area, u.intro, u.pic, u.create_date, u.update_date, a.name AS a_name FROM users AS u INNER JOIN area AS a ON u.area = a.id WHERE u.id=? AND u.delete_flg=0';
+        $sql = 'SELECT u.id, u.username, u.job, u.hobby, u.area, u.intro, u.pic, u.create_date, u.update_date, a.name AS a_name FROM users AS u INNER JOIN area AS a ON u.area = a.id WHERE u.id=? AND u.delete_flg=0';
         $data = array($u_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
@@ -367,12 +367,12 @@ function validLength($str, $key, $len = 8)
 }
 
 // 投稿情報取得
-function getPost($u_id, $p_id)
+function getPost($u_id, $a_id)
 {
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT * FROM photo WHERE posted_id = ? AND id=? AND delete_flg = 0';
-        $data = array($u_id, $p_id);
+        $sql = 'SELECT * FROM article WHERE posted_id = ? AND id=? AND delete_flg = 0';
+        $data = array($u_id, $a_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -394,7 +394,7 @@ function getPostList($nowMin = 1, $category, $sort, $span = 20)
         // DBへ接続
         $dbh = dbConnect();
         // 【〜件数用】 のSQL文作成
-        $sql = 'SELECT id FROM photo';
+        $sql = 'SELECT id FROM article';
         if (!empty($category)) $sql .= ' WHERE category_id = ' . $category;
         if (!empty($sort)) {
             switch ($sort) {
@@ -417,7 +417,7 @@ function getPostList($nowMin = 1, $category, $sort, $span = 20)
         }
 
         // 【ページング用】 のSQL文作成
-        $sql = 'SELECT * FROM photo';
+        $sql = 'SELECT * FROM article';
         if (!empty($category)) $sql .= ' WHERE category_id = ' . $category;
         if (!empty($sort)) {
             switch ($sort) {
@@ -447,14 +447,14 @@ function getPostList($nowMin = 1, $category, $sort, $span = 20)
 }
 
 // 投稿情報
-function getPostOne($p_id)
+function getPostOne($a_id)
 {
     debug('投稿詳細を取得します');
-    debug('写真ID:' . $p_id);
+    debug('写真ID:' . $a_id);
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT p.id, p.title, p.place, p.key1, p.key2, p.key3, p.category_id, p.comment, p.pic1, p.pic2, p.pic3, p.pic4, p.create_date, p.update_date, p.posted_id, u.username, u.intro, u.pic, c.name AS c_name FROM photo AS p INNER JOIN users AS u ON p.posted_id = u.id INNER JOIN category AS c ON p.category_id = c.id WHERE p.id=? AND p.delete_flg = 0 AND u.delete_flg = 0';
-        $data = array($p_id);
+        $sql = 'SELECT a.id, a.title, a.key1, a.key2, a.key3, a.category_id, a.comment, a.pic1, a.pic2, a.pic3, a.pic4, a.create_date, a.update_date, a.posted_id, u.username, u.intro, u.pic, c.name AS c_name FROM article AS a INNER JOIN users AS u ON a.posted_id = u.id INNER JOIN category AS c ON a.category_id = c.id WHERE a.id=? AND a.delete_flg = 0 AND u.delete_flg = 0';
+        $data = array($a_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -466,12 +466,12 @@ function getPostOne($p_id)
     }
 }
 // 各投稿のコメントを取得
-function getPartnerComment($p_id) {
+function getPartnerComment($a_id) {
     debug('コメント取得します');
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT p.from_user, p.comment, u.id, u.username, u.pic FROM partnerComment AS p INNER JOIN users AS u ON p.from_user = u.id WHERE photo_id = ? AND p.delete_flg = 0 AND u.delete_flg = 0 ORDER BY p.send_date ASC';
-        $data = array($p_id);
+        $sql = 'SELECT pc.from_user, pc.comment, u.id, u.username, u.pic FROM partnerComment AS pc INNER JOIN users AS u ON pc.from_user = u.id WHERE article_id = ? AND pc.delete_flg = 0 AND u.delete_flg = 0 ORDER BY pc.send_date ASC';
+        $data = array($a_id);
 
         $stmt = queryPost($dbh, $sql, $data);
         if($stmt) {
@@ -490,7 +490,7 @@ function getBordData($m_id)
     debug('掲示板情報を取得します');
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT sender_id, receiver_id, photo_id, create_date FROM bord WHERE id = :m_id AND delete_flg = 0';
+        $sql = 'SELECT sender_id, receiver_id, article_id, create_date FROM bord WHERE id = :m_id AND delete_flg = 0';
         $data = array(':m_id' => $m_id);
 
         $stmt = queryPost($dbh, $sql, $data);
@@ -509,7 +509,7 @@ function getMsgData($id)
     debug('写真ID:' . $id);
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT m.from_user, m.msg, u.pic FROM message AS m INNER JOIN users AS u ON m.from_user=u.id WHERE m.photo_id = ? AND m.delete_flg = 0';
+        $sql = 'SELECT m.from_user, m.msg, u.pic FROM message AS m INNER JOIN users AS u ON m.from_user=u.id WHERE m.article_id = ? AND m.delete_flg = 0';
         $data = array($id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
@@ -527,7 +527,7 @@ function getMsgAndBord($m_id)
     debug('メッセージ情報を取得します');
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT m.id AS m_id, b.photo_id, bord_id, msg, from_user, to_user, send_date, b.sender_id, b.receiver_id, b.create_date FROM message AS m RIGHT JOIN bord AS b ON m.bord_id=b.id WHERE b.id=? ORDER BY send_date ASC';
+        $sql = 'SELECT m.id AS m_id, b.article_id, bord_id, msg, from_user, to_user, send_date, b.sender_id, b.receiver_id, b.create_date FROM message AS m RIGHT JOIN bord AS b ON m.bord_id=b.id WHERE b.id=? ORDER BY send_date ASC';
         $data = array($m_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
@@ -574,7 +574,7 @@ function myData($u_id)
 {
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT * FROM photo WHERE posted_id=? AND delete_flg = 0';
+        $sql = 'SELECT * FROM article WHERE posted_id=? AND delete_flg = 0';
         $data = array($u_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
@@ -591,7 +591,7 @@ function myLike($u_id)
 {
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT * FROM favorite AS f LEFT JOIN photo AS p ON f.photo_id = p.id WHERE f.user_id = ? AND f.delete_flg = 0 AND p.delete_flg = 0';
+        $sql = 'SELECT * FROM favorite AS f LEFT JOIN article AS a ON f.article_id = a.id WHERE f.user_id = ? AND f.delete_flg = 0 AND a.delete_flg = 0';
         $data = array($u_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt) {
@@ -696,12 +696,12 @@ function uploadImg($file, $key)
 }
 
 // お気に入り
-function isLike($u_id, $p_id)
+function isLike($u_id, $a_id)
 {
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT * FROM favorite WHERE user_id=? AND photo_id=?';
-        $data = array($u_id, $p_id);
+        $sql = 'SELECT * FROM favorite WHERE user_id=? AND article_id=?';
+        $data = array($u_id, $a_id);
         $stmt = queryPost($dbh, $sql, $data);
         if ($stmt->rowCount()) {
             debug('お気に入りです');

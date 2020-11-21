@@ -9,7 +9,7 @@ require('auth.php');
 $myInfo = myData($_SESSION['user_id']);
 debug('投稿写真情報:'.print_r($myInfo,true));
 
-//　お気に入り情報取得
+// お気に入り情報取得
 $myLike = myLike($_SESSION['user_id']);
 debug('お気に入り情報:'.print_r($myLike,true));
 
@@ -35,17 +35,17 @@ require('head.php');
                 <div class="content-wrap">
                     <div class="posted con">
                         <div class="main-txt">
-                            <h3 class="raf right">posted photo - <span class="min" style="font-size:16px;vertical-align:middle;">投稿写真</span></h3>
+                            <h3 class="raf right">posted article - <span class="min" style="font-size:16px;vertical-align:middle;">投稿記事</span></h3>
                         </div>
                         <ul class="flex">
                             <?php if(!empty($myInfo[0]['id'])){
                                 foreach($myInfo as $key => $val){ ?>
                             <li>
-                                <a href="post.php<?php echo (!empty(appendGet())) ? appendGet(). '&p_id='.$val['id'] : '?p_id='.$val['id']; ?>">
+                                <a href="post.php<?php echo (!empty(appendGet())) ? appendGet(). '&a_id='.$val['id'] : '?a_id='.$val['id']; ?>">
                                     <dl>
-                                        <dt class="photo"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
+                                        <dt class="article"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
                                         <dd class="ptitle min"><?php echo sanitize($val['title']); ?></dd>
-                                        <dd class="comment min"><?php echo sanitize($val['comment']); ?></dd>
+                                        <dd class="comment min"><?php echo sanitize(mb_substr($val['comment'], 0, 30)); ?>...</dd>
                                     </dl>
                                 </a>
                             </li>
@@ -64,11 +64,11 @@ require('head.php');
                             <?php if(!empty($myLike[0]['user_id'])){
                                 foreach($myLike as $key => $val){ ?>
                             <li>
-                                <a href="postdetail.php<?php echo '?h_id='.$val['posted_id'].'&p_id='.$val['id']; ?>">
+                                <a href="postdetail.php<?php echo '?h_id='.$val['posted_id'].'&a_id='.$val['id']; ?>">
                                     <dl>
-                                        <dt class="photo"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
+                                        <dt class="article"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
                                         <dd class="ptitle min"><?php echo sanitize($val['title']); ?></dd>
-                                        <dd class="comment min"><?php echo sanitize($val['comment']); ?></dd>
+                                        <dd class="comment min"><?php echo sanitize(mb_substr($val['comment'], 0, 30)); ?>...</dd>
                                     </dl>
                                 </a>
                             </li>
@@ -89,7 +89,7 @@ require('head.php');
                             <li>
                                 <a href="profdetail.php<?php echo '?h_id='.$val['opponent_id']; ?>">
                                     <dl>
-                                        <dt class="photo"><img src="<?php echo showImg(sanitize($val['pic'])); ?>" alt=""></dt>
+                                        <dt class="article"><img src="<?php echo showImg(sanitize($val['pic'])); ?>" alt=""></dt>
                                         <dd class="ptitle min"><?php echo sanitize($val['username']); ?></dd>
                                     </dl>
                                 </a>

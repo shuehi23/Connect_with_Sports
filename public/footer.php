@@ -1,6 +1,6 @@
 <footer id="footer" class="min" style="width: 100%;">
 
-  Copyright ©️ <a href="#" style="color: white;">Connect with Sports</a>
+  Copyright ©️ <a href="#" style="color: white;">Special Fan Club</a>
 </footer>
 <script src="js/vendor/jquery-3.4.1.min.js"></script>
 <script>
@@ -82,18 +82,18 @@
 
     // ライブプレビュー
     var $like,
-      likePhotoId;
+      likeArticleId;
     $like = $('.js-like') || null;
-    likePhotoId = $like.data('photoid') || null;
+    likeArticleId = $like.data('articleid') || null;
 
-    if (likePhotoId !== undefined && likePhotoId !== null) {
+    if (likeArticleId !== undefined && likeArticleId !== null) {
       $like.on('click', function() {
         var $this = $(this);
         $.ajax({
           type: "POST",
           url: "ajax.php",
           data: {
-            photoId: likePhotoId
+            articleId: likeArticleId
           }
           // ajax通信が成功した場合
         }).done(function(data) {

@@ -9,8 +9,9 @@ require('head.php');
         <div class="main-img-wrap">
             <div class="main-wrap">
                 <div class="main-inner">
-                    <h2 class="raf">Connect with Sports</h2>
-                    <h2 class="font">スポーツで繋ぐ</h2>
+                    <h2 class="raf">Special Fan Club</h2>
+                    <h2 class="font">金子峻大選手の特設専用サイトを開設しました!!<br>
+                                     本人からの返信や投稿がありますので、是非、一度お楽しみください。</h2>
                     <p><a href="signup.php" class="raf link">Share</a></p>
                 </div>
             </div>

@@ -82,8 +82,8 @@ require('head.php');
                                 ?>
                                         <li>
                                             <a href="msg.php?m_id=<?php echo sanitize($msg['bord_id']); ?>">
-                                                <dl>
-                                                    <dt class="photo"><img src="<?php echo showImg(sanitize($partnerUserInfo['pic'])); ?>" alt=""></dt>
+                                                <dl style="height: 240px;">
+                                                    <dt class="article"><img src="<?php echo showImg(sanitize($partnerUserInfo['pic'])); ?>" alt=""></dt>
                                                     <dd class="ptitle min"><?php echo sanitize($partnerUserInfo['username']); ?> </dd>
                                                     <dd class="comment min">メッセージ : <?php echo mb_substr(sanitize($msg['msg']), 0, 5); ?>...</dd>
                                                     <dd class="send min"><?php echo date('Y-m-d', strtotime(sanitize($msg['send_date']))); ?></dd>

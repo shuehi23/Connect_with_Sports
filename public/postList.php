@@ -49,9 +49,9 @@ require('head.php');
                             <div class="err-msg"></div>
 
                             <!-- カテゴリー -->
-                            <label for="" class="min" style="font-size:18px;">
+                            <label for="" class="min" style="font-size:18px;margin-right:10px">
                                 <p>カテゴリー</p>
-                                <select name="category_id" id="" class="select-item" style="margin-right:10px">
+                                <select name="category_id" id="" class="select-item">
                                     <option value="0" <?php if (getFormData('category_id', true) == false) echo 'selected'; ?>>選択してください</option>
                                     <?php foreach ($dbCate as $key => $val) : ?>
                                         <option value="<?php echo $val['id']; ?>" <?php if (getFormData('category_id', true) == $val['id']) echo 'selected'; ?>><?php echo $val['name']; ?></option>
@@ -78,11 +78,11 @@ require('head.php');
                 </div>
 
                 <!-- 投稿写真一覧 -->
-                <div class="photo-list-wrap">
+                <div class="article-list-wrap">
                     <div class="discover-wrap flex min">
                         <div class="dis">
                             <?php if(!empty($dbPostData['total'])) { ?>
-                            <p><span class="tatalre"><?php echo sanitize($dbPostData['total']); ?></span>件の投稿が見つかりました</p>
+                            <p><span class="totalre"><?php echo sanitize($dbPostData['total']); ?></span>件の投稿が見つかりました</p>
                                     <?php } else { ?>
                                     投稿はありません
                                 <?php } ?>
@@ -91,14 +91,14 @@ require('head.php');
                             <p><span><?php echo (!empty($dbPostData['data'])) ? $nowMin + 1 : 0; ?></span> - <span><?php echo $nowMin + $list; ?></span> / <span><?php echo sanitize($dbPostData['total']); ?></span>件中</p>
                         </div>
                     </div>
-                    <ul class="flex photo-ul">
+                    <ul class="flex article-ul">
                         <?php foreach ($dbPostData['data'] as $key => $val) : ?>
                             <li>
-                                <a href="postDetail.php<?php echo (!empty(appendget())) ? appendget() . '&p_id=' . $val['id'] . '&h_id=' . $val['posted_id'] : '?p_id=' . $val['id'] . '&h_id=' . $val['posted_id']; ?>">
+                                <a href="postDetail.php<?php echo (!empty(appendget())) ? appendget() . '&a_id=' . $val['id'] . '&h_id=' . $val['posted_id'] : '?a_id=' . $val['id'] . '&h_id=' . $val['posted_id']; ?>">
                                     <dl>
-                                        <dt class="photo"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
+                                        <dt class="article"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
                                         <dd class="ptitle min"><?php echo sanitize($val['title']); ?></dd>
-                                        <dd class="comment min"><?php echo sanitize(mb_substr($val['comment'], 0, 40)); ?></dd>
+                                        <dd class="comment min"><?php echo sanitize(mb_substr($val['comment'], 0, 60)); ?>...</dd>
                                     </dl>
                                 </a>
                             </li>

@@ -52,7 +52,7 @@ if(!empty($_POST)){
                         本メールアドレス宛にパスワードの再発行を致しました。
                         下記のURLにて再発行パスワードをご入力頂き、ログインください.
 
-                        ログインページ：https://connect-with-sports.herokuapp.com/login.php
+                        ログインページ：https://takahito_special_site.herokuapp.com/login.php
                         再発行パスワード：{$pass}
                         ※ログイン後、パスワードのご変更をお願い致します。
                         EOT;

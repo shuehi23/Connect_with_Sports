@@ -10,7 +10,7 @@ if (!empty($_POST)) {
     try {
         $dbh = dbConnect();
         $sql1 = 'UPDATE users SET delete_flg = 1 WHERE id = ? AND NOT id = ?';
-        $sql2 = 'UPDATE photo SET delete_flg = 1 WHERE posted_id = ?';
+        $sql2 = 'UPDATE article SET delete_flg = 1 WHERE posted_id = ?';
         $sql3 = 'UPDATE favorite SET delete_flg = 1 WHERE user_id = ?';
 
         $data = array($_SESSION['user_id'], $gestUserId);

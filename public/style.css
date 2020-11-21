@@ -52,7 +52,7 @@ header {
 }
 
 header .sub {
-    background-color: black;
+    background-color: #f30707;
 }
 
 .sheader {
@@ -102,12 +102,12 @@ header .sub {
     font-size: 18px;
     color: #ffffff;
     padding: 5px 35px;
-    border-left: 2px solid #707070;
+    border-left: 2px solid #ffffff;
     transition: color .4s;
 }
 
 .global-nav li:last-child a, .rig-nav li:last-child a {
-    border-right: 2px solid #707070;
+    border-right: 2px solid #ffffff;
 }
 
 h1 {
@@ -133,9 +133,8 @@ h1 a {
 
 .main-img {
     width: 100%;
-    height: 700px;
     height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(92, 77, 66, 0.6) 0%, rgba(92, 77, 66, 0.6) 100%), url(img/top.jpg);
+    background-image:linear-gradient(to bottom, rgba(92, 77, 66, 0.2) 100%, rgba(92, 77, 66, 0.6) 100%), url(img/taka01.jpg);
     background-size: cover;
 }
 
@@ -154,7 +153,11 @@ h1 a {
     font-size: 100px;
     letter-spacing: 6px;
     margin-bottom: 40px;
-    color: white;
+    color: #fefefe;
+}
+
+.main-inner h2 {
+    color: #1e72f1;
 }
 
 .main-inner .link {
@@ -183,7 +186,7 @@ h1 a {
 }
 
 .join-img-wrap {
-    background: url(img/pass_01.jpg) no-repeat;
+    background: url(img/stadium.jpg) no-repeat;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
     background-size: cover;
@@ -233,7 +236,7 @@ input[type="text"] {
     letter-spacing: 2px;
     box-sizing: border-box;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: block;
 }
 
@@ -248,7 +251,7 @@ input[type="password"] {
     letter-spacing: 2px;
     box-sizing: border-box;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     display: block;
 }
 
@@ -316,7 +319,7 @@ input:hover[type=submit] {
     border: #e8e8e8e8;
     text-align: center;
     margin: 20px 0 10px 0;
-    border: 1px solid #fff;
+    border: 2px solid #787e7f;
     font-size: 0.9rem;
 }
 
@@ -335,7 +338,7 @@ input:hover[type=submit] {
     padding-bottom: 20px;
     padding-top: 20px;
     padding: 20px;
-    border: 8px solid #dddddd40;
+    border: 8px solid #ffffff;
 }
 
 .prof-img {
@@ -365,7 +368,7 @@ input:hover[type=submit] {
 
 .bottom {
     padding: 25px 0 30px 40px;
-    border-right: 8px solid #dddddd40;
+    border-right: 8px solid #ffffff;
 }
 
 .bottom li {
@@ -387,13 +390,12 @@ input:hover[type=submit] {
 
 .bottom li a {
     font-size: 18px;
-    color: #333;
 }
 
 /* mypage */
 
 .mypage-img {
-    background: url(img/mypage.jpg) no-repeat;
+    background: url(img/stadium02.jpg) no-repeat;
     background-size: cover;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
@@ -431,32 +433,32 @@ input:hover[type=submit] {
     margin-bottom: 10px;
 }
 
-.con .flex dl, .photo-ul dl {
+.con .flex dl, .article-ul dl {
     background-color: #ffffffc7;
     border-radius: 3px;
     box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.3);
     margin-bottom: wrap;
-    height: 250px;
+    height: 260px;
     padding: 5px;
 }
 
-.photo-ul li {
+.article-ul li {
     padding: 0 5px;
 }
 
-.con .flex, .photo-list-wrap .flex {
+.con .flex, .article-list-wrap .flex {
     flex-wrap: wrap;
 }
 
-.photo {
+.article {
     width: 100%;
 }
 
-.follow .photo {
+.follow .article {
     width: 100%;
 }
 
-.photo img {
+.article img {
     width: 100%;
     height: 150px;
     object-fit: cover;
@@ -487,6 +489,7 @@ dd.send {
     border-radius: 25%;
     object-position: 0 -15px;
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
+    object-position: inherit;
 }
 
 .follow .flex dl {
@@ -510,12 +513,12 @@ dd.send {
 /* profedit */
 
 #profedit .mypage-img {
-    background: url(img/prof_04.jpg) no-repeat;
+    background: url(img/profEdit.jpg) no-repeat;
     background-size: cover;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
     background-position-x: 0;
-    min-height: 1400px;
+    min-height: 1320px;
     background-attachment: fixed;
     height: 100vh;
 }
@@ -554,15 +557,18 @@ input[type="file"] {
 }
 
 select {
+    display: block;
+    width: 100%;
     border: 1px solid #0e00007a;
     border-radius: 2em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     appearance: none;
     -webkit-appearance: none;
-    padding: 0px 25px;
+    padding: 0px 10px;
     background-color: transparent;
     height: 45px;
-    width: 170px;
+    text-align-last: center;
+    font-size: 18px;
 }
 
 select:focus {
@@ -614,7 +620,7 @@ textarea {
 /* passedit */
 
 .pass-img {
-    background: url(img/prof02.jpg) no-repeat;
+    background: url(img/kamaisi02.jpg) no-repeat;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
     background-size: cover;
@@ -629,14 +635,19 @@ textarea {
     top: 100px;
 }
 
+.pass-wrapper .btn {
+    margin-top: 30px;
+}
+
 /* post */
 
 .post-img {
-    background: url(img/post.jpg) no-repeat;
+    background: url(img/stadium02.jpg) no-repeat;
     background-size: cover;
+    background-position: center;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
-    min-height: 1400px;
+    min-height: 1280px;
     background-attachment: fixed;
     height: 100vh;
 }
@@ -662,6 +673,7 @@ textarea {
 }
 
 input[type=text].key {
+    font-size: 16px ;
     width: 170px;
     margin-right: 8px;
     margin-bottom: 0;
@@ -691,8 +703,9 @@ input[type=text].key:last-child {
 /* postList */
 
 .post-list-img {
-    background: url(img/post-list-img.jpg) no-repeat;
+    background: url(img/stadium02.jpg) no-repeat;
     background-size: cover;
+    background-position: center;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
     min-height: 1600px;
@@ -710,14 +723,13 @@ input[type=text].key:last-child {
 }
 
 .select-item {
-    height: 35px;
-    font-size: 13px;
-    margin-top: 6px;
+    margin-top: 5px;
+    font-size: 15px;
 }
 
 #postList input[type=text] {
     width: 240px;
-    margin-top: 6px;
+    margin-top: 5px;
     margin-right: 48px;
 }
 
@@ -735,7 +747,7 @@ input[type=text].key:last-child {
     margin-top: 28px;
 }
 
-.photo-list-wrap {
+.article-list-wrap {
     width: 100%;
     padding: 24px 24px;
 }
@@ -747,7 +759,7 @@ input[type=text].key:last-child {
     width: 30%;
 }
 
-.photo-list-wrap .photo-ul li {
+.article-list-wrap .article-ul li {
     margin-top: 20px;
     width: 20%;
 }
@@ -788,7 +800,7 @@ input[type=text].key:last-child {
 /* postditail */
 
 .post-detail-img {
-    background: url(img/main-img.jpg) no-repeat;
+    background: url(img/stadium02.jpg) no-repeat;
     background-size: cover;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
@@ -867,8 +879,12 @@ input[type=text].key:last-child {
     margin-bottom: 10px;
 }
 
-.place-title, .key-title, .cate-title {
+.key-title, .cate-title {
     margin-right: 48px;
+    margin-bottom: 10px;
+}
+.sub-title .txt{
+    margin-left: 5px;
 }
 
 .title {
@@ -903,7 +919,7 @@ input[type=text].key:last-child {
 
 .com-wrap>.comment {
     font-size: 12px;
-    padding: 5px;
+    padding: 5px 10px;
     width: 100%;
     min-height: 100px;
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
@@ -937,9 +953,9 @@ input[type=text].key:last-child {
 }
 
 .word-wrap .u_com {
-    right: 130px;
+    right: 150px;
     top: 15px;
-    padding: 10px 0;
+    font-size: 15px;
 }
 
 .word-wrap img {
@@ -967,6 +983,7 @@ input[type=text].key:last-child {
     margin-bottom: 0;
     background-color: #f1eaea8c;
     text-align: center;
+    color: #333;
 }
 
 .self-com>textarea::placeholder {
@@ -985,7 +1002,7 @@ input[type=text].key:last-child {
 /* profdetail */
 
 .prof-detail-img {
-    background: url(img/prof.jpg) no-repeat;
+    background: url(img/stadium02.jpg) no-repeat;
     background-size: cover;
     background-color: rgba(255, 255, 255, 0.2);
     background-blend-mode: difference;
@@ -1116,6 +1133,15 @@ input[type=text].key:last-child {
 }
 
 /* drawal */
+#drawal .join-img-wrap {
+    background: url(img/drawal.jpg) no-repeat;
+    background-color: rgba(255, 255, 255, 0.2);
+    background-blend-mode: difference;
+    background-size: cover;
+    height: 700px;
+    height: 100vh;
+    min-height: 700px;
+}
 
 #drawal .join-wrap a {
     color: white;
@@ -1171,7 +1197,7 @@ input[type=button] {
     width: 100%;
     height: 180px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 5px;
+    padding: 10px;
 }
 
 .detail-de {

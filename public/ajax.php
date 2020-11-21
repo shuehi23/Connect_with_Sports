@@ -5,28 +5,28 @@ debug('-----------------------ajax----------------------');
 debugLogStart();
 
 // POST送信があり、ユーザーIDgaあり、ログインしている場合
-if(isset($_POST['photoId']) && isset($_SESSION['user_id'])){
+if(isset($_POST['articleId']) && isset($_SESSION['user_id'])){
     debug('POST送信があります');
-    $p_id = $_POST['photoId'];
-    debug('写真ID:'.$p_id);
+    $a_id = $_POST['articleId'];
+    debug('写真ID:'.$a_id);
     
     try {
         $dbh = dbConnect();
-        $sql = 'SELECT * FROM favorite WHERE photo_id = ? AND user_id = ?';
-        $data = array($p_id, $_SESSION['user_id']);
+        $sql = 'SELECT * FROM favorite WHERE article_id = ? AND user_id = ?';
+        $data = array($a_id, $_SESSION['user_id']);
         $stmt = queryPost($dbh, $sql, $data);
         $resultCount = $stmt->rowCount();
         // レコードが１件でもある場合
         if (!empty($resultCount)) {
             // お気に入りされている場合レコードを削除する
-            $sql = 'DELETE FROM favorite WHERE photo_id = ? AND user_id = ?';
-            $data = array($p_id, $_SESSION['user_id']);
+            $sql = 'DELETE FROM favorite WHERE article_id = ? AND user_id = ?';
+            $data = array($a_id, $_SESSION['user_id']);
             $stmt =queryPost($dbh, $sql, $data);
             debug('お気に入りから外されました:'.$resultCount);
         }else{
             // レコード挿入
-            $sql = 'INSERT INTO favorite SET photo_id = ?, user_id = ?, create_date = ?';
-            $data = array($p_id, $_SESSION['user_id'], date('Y-m-d H:i:s'));
+            $sql = 'INSERT INTO favorite SET article_id = ?, user_id = ?, create_date = ?';
+            $data = array($a_id, $_SESSION['user_id'], date('Y-m-d H:i:s'));
             $stmt = queryPost($dbh, $sql, $data);
             debug('お気に入りされました:'.$resultCount);
         }

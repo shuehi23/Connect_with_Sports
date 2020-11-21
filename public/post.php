@@ -5,17 +5,17 @@ debugLogStart();
 
 require('auth.php');
 
-$p_id = (!empty($_GET['p_id'])) ? $_GET['p_id'] : '';
-debug('GETパラメータ:'.print_r($p_id,true));
+$a_id = (!empty($_GET['a_id'])) ? $_GET['a_id'] : '';
+debug('GETパラメータ:'.print_r($a_id,true));
 // DBから投稿情報を取得
-$dbData = (!empty($p_id)) ? getPost($_SESSION['user_id'], $p_id) : '';
+$dbData = (!empty($a_id)) ? getPost($_SESSION['user_id'], $a_id) : '';
 // 新規投稿か編集か判断
 $edit_flg = (empty($dbData)) ? false : true;
 // カテゴリー
 $dbCategory = getCate();
 
-debug('投稿ID:'.$p_id);
-debug('DBphoto情報:'.print_r($dbData,true));
+debug('投稿ID:'.$a_id);
+debug('DB記事情報:'.print_r($dbData,true));
 debug('カテゴリー:'.print_r($dbCategory,true));
 
 // getパラメータはあるが改竄されている場合マイページへ
@@ -30,7 +30,6 @@ if(!empty($_POST)){
     debug('FILES情報:'.print_r($_FILES,true));
 
     $title = $_POST['title'];
-    $place = $_POST['place'];
     $key1 = $_POST['key1'];
     $key2 = $_POST['key2'];
     $key3 = $_POST['key3'];
@@ -48,16 +47,12 @@ if(!empty($_POST)){
     if(empty($dbData)){
         validRequired($title, 'title');
         maxLen($title, 'title');
-        maxLen($place, 'place');
         maxLen($comment, 'comment');
         validSelect($cate, 'category_id');
     }else{
         if($dbData['title'] !== $title){
             validRequired($title, 'title');
             maxLen($title, 'title');
-        }
-        if($dbData['place'] !== $place){
-            maxLen($place, 'place');
         }
         if($dbData['comment'] !== $comment){
             maxLen($comment, 'comment');
@@ -74,12 +69,12 @@ if(!empty($_POST)){
             $dbh = dbConnect();
             if ($edit_flg) {
                 debug('DB更新です');
-                $sql = 'UPDATE photo SET title=?, place=?, key1=?, key2=?, key3=?, category_id=?, comment=?, pic1=?, pic2=?, pic3=?, pic4=? WHERE id=? AND posted_id=?';
-                $data = array($title, $place, $key1, $key2, $key3, $cate, $comment, $pic1, $pic2, $pic3, $pic4, $p_id, $_SESSION['user_id']);
+                $sql = 'UPDATE article SET title=?, key1=?, key2=?, key3=?, category_id=?, comment=?, pic1=?, pic2=?, pic3=?, pic4=? WHERE id=? AND posted_id=?';
+                $data = array($title, $key1, $key2, $key3, $cate, $comment, $pic1, $pic2, $pic3, $pic4, $a_id, $_SESSION['user_id']);
             } else {
                 debug('新規登録です');
-                $sql = 'INSERT INTO photo SET title=?, place=?, key1=?, key2=?, key3=?, category_id=?, comment=?, pic1=?, pic2=?, pic3=?, pic4=?, create_date=?, posted_id=?';
-                $data = array($title, $place, $key1, $key2, $key3, $cate, $comment, $pic1, $pic2, $pic3, $pic4, date('Y-m-d H:i:s'), $_SESSION['user_id']);
+                $sql = 'INSERT INTO article SET title=?, key1=?, key2=?, key3=?, category_id=?, comment=?, pic1=?, pic2=?, pic3=?, pic4=?, create_date=?, posted_id=?';
+                $data = array($title, $key1, $key2, $key3, $cate, $comment, $pic1, $pic2, $pic3, $pic4, date('Y-m-d H:i:s'), $_SESSION['user_id']);
             }
             $stmt = queryPost($dbh, $sql, $data);
             if($stmt){
@@ -116,11 +111,16 @@ require('head.php');
                              <input type="text" name="title" value="<?php echo  getFormData('title'); ?>"> 
                          </label>
                          <div class="err-msg"><?php echo errmsg('title'); ?></div>
-                         
-                         <label for="" class="raf" style="font-size:24px;">place - <span class="min" style="font-size:16px;vertical-align:middle;">場所</span>
-                            <input type="text" name="place" value="<?php echo getFormData('place'); ?>">
-                         </label>
-                         <div class="err-msg"><?php echo errmsg('place'); ?></div>
+
+                         <label for="" class="raf" style="font-size:24px;">category - <span class="min" style="font-size:16px;vertical-align:middle;">カテゴリー</span><br>
+                             <select class="key" name="category_id" id="cate" style="margin-top:5px;">
+                                 <option value="0" <?php if(getFormData('category_id') == 0) echo 'selected'; ?>>選択してください</option>
+                                 <?php foreach($dbCategory as $key => $val): ?>
+                                 <option value="<?php echo $val['id']; ?>" <?php if(getFormData('category_id') === $val['id']) echo 'selected'; ?>><?php echo $val['name']; ?></option>
+                                 <?php endforeach; ?>
+                            </select>
+                        </label>
+                        <div class="err-msg" style="text-align:left;bottom: 15px;left:20px;"><?php echo errmsg('category_id'); ?></div>
 
                          <label for="" class="raf key" style="font-size:24px;">keywords - <span class="min" style="font-size:16px;vertical-align:middle;">キーワード</span><br>
                         <div class="input-area">
@@ -130,16 +130,6 @@ require('head.php');
                              </div> 
                          </label>
                         <div class="err-msg"></div>
-
-                        <label for="" class="raf" style="font-size:24px;display:inline-block;margin-bottom:20px;">category - <span class="min" style="font-size:16px;vertical-align:middle;">カテゴリー</span><br>
-                             <select class="min" name="category_id" id="cate" style="font-size:14px;margin-top:5px;">
-                                 <option value="0" <?php if(getFormData('category_id') == 0) echo 'selected'; ?>>選択してください</option>
-                                 <?php foreach($dbCategory as $key => $val): ?>
-                                 <option value="<?php echo $val['id']; ?>" <?php if(getFormData('category_id') === $val['id']) echo 'selected'; ?>><?php echo $val['name']; ?></option>
-                                 <?php endforeach; ?>
-                            </select>
-                        </label>
-                        <div class="err-msg" style="text-align:left;bottom: 15px;left:20px;"><?php echo errmsg('category_id'); ?></div>
 
                         <label for="" class="raf" style="font-size:24px;">comment - <span class="min" style="font-size:16px;vertical-align:middle;">コメント</span>
                              <textarea name="comment" id="intro" cols="20" rows="5"><?php echo getFormData('comment'); ?></textarea>
@@ -191,7 +181,7 @@ require('head.php');
 
                         <div class="flex" style="display: block;">
                         <?php if(!empty($edit_flg)){ ?>
-                        <a class="delete" href="deletePost.php<?php echo '?p_id='.$p_id; ?>"><i class="far fa-trash-alt"></i></a> 
+                        <a class="delete" href="deletePost.php<?php echo '?a_id='.$a_id; ?>"><i class="far fa-trash-alt"></i></a> 
                         <?php } ?>
                         <p  class="btn" style="text-align:center;"><input class="raf" type="submit" value="<?php echo(empty($edit_flg)) ? 'post' : 'change'; ?>" name="submit"></p>
                         </div>

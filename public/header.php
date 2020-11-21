@@ -11,7 +11,7 @@
         </div>
         <div class="inner">
             <div class="main-logo">
-                <h1><a href="top.php" class="raf">Connect with Sports</a></h1>
+                <h1><a href="top.php" class="raf">Special Fan Club</a></h1>
             </div>
         </div>
         <div class="inner">
