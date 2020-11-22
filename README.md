@@ -1,6 +1,6 @@
 # Takahiro_Special_Site
 https://takahiro-special-site.herokuapp.com/top.php
-![takahiro_special_site](https://user-images.githubusercontent.com/73765422/99891945-ddaf8300-2cb2-11eb-8fe2-d0ceb1f32d02.jpg)
+![takahiro_special_site](https://user-images.githubusercontent.com/73765422/99897148-65f54e80-2cda-11eb-88f9-37e36b4f5f47.jpg)
 
 ※ 動作確認に際して、会員登録がお手数の場合は下記のアイパスでログインをお願いします。  
 アドレス：guest@logincom  
