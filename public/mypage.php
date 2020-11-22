@@ -87,7 +87,7 @@ require('head.php');
                             <?php if(!empty($myFollow[0]['user_id'])){
                                 foreach($myFollow as $key => $val){ ?>
                             <li>
-                                <a href="profdetail.php<?php echo '?h_id='.$val['opponent_id']; ?>">
+                                <a href="profDetail.php<?php echo '?h_id='.$val['opponent_id']; ?>">
                                     <dl>
                                         <dt class="article"><img src="<?php echo showImg(sanitize($val['pic'])); ?>" alt=""></dt>
                                         <dd class="ptitle min"><?php echo sanitize($val['username']); ?></dd>
