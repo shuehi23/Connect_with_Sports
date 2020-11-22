@@ -1,7 +1,6 @@
 # Takahiro_Special_Site
 https://takahiro-special-site.herokuapp.com/top.php
-
-
+![takahiro_special_site](https://user-images.githubusercontent.com/73765422/99891945-ddaf8300-2cb2-11eb-8fe2-d0ceb1f32d02.jpg)
 
 # 概要
 オブジェクト指向によるプログラミングで制作したゲームです。  
