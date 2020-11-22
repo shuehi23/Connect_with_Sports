@@ -11,7 +11,7 @@ https://takahiro-special-site.herokuapp.com/top.php
 
 # 開発環境・使用言語
 MAMP 
-HTML・CSS・Javascript・MySQL
+HTML・CSS・Javascript・PHP・MySQL
 
 # 機能
 ・会員関連(新規登録・ログイン・ログアウト・アカウント削除・プロフィール画像登録・プロフィール編集・パスワードリマインダー・メッセージ)  
