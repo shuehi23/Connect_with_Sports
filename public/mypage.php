@@ -7,7 +7,7 @@ require('auth.php');
 
 // 自分情報取得
 $myInfo = myData($_SESSION['user_id']);
-debug('投稿写真情報:'.print_r($myInfo,true));
+debug('記事投稿情報:'.print_r($myInfo,true));
 
 // お気に入り情報取得
 $myLike = myLike($_SESSION['user_id']);
@@ -64,7 +64,7 @@ require('head.php');
                             <?php if(!empty($myLike[0]['user_id'])){
                                 foreach($myLike as $key => $val){ ?>
                             <li>
-                                <a href="postdetail.php<?php echo '?h_id='.$val['posted_id'].'&a_id='.$val['id']; ?>">
+                                <a href="postDetail.php<?php echo '?h_id='.$val['posted_id'].'&a_id='.$val['id']; ?>">
                                     <dl>
                                         <dt class="article"><img src="<?php echo showImg(sanitize($val['pic1'])); ?>" alt=""></dt>
                                         <dd class="ptitle min"><?php echo sanitize($val['title']); ?></dd>
