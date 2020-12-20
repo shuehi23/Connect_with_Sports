@@ -10,7 +10,7 @@ https://takahiro-special-site.herokuapp.com/top.php
 プロラグビー選手の専用サイトです。
 
 # 開発環境・使用言語
-MAMP 
+MAMP  
 HTML・CSS・Javascript・PHP・MySQL
 
 # 機能
